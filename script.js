@@ -103,10 +103,10 @@ function validateForm() {
 
 // Toast Notification Functions
 function createToast(type, title, message) {
-  const toastContainer = document.getElementById('toast-container');
-  const toast = document.createElement('div');
+  const toastContainer = document.getElementById("toast-container");
+  const toast = document.createElement("div");
   toast.className = `toast ${type}`;
-  
+
   toast.innerHTML = `
     <div class="toast-header">
       <span class="toast-title">${title}</span>
@@ -115,30 +115,30 @@ function createToast(type, title, message) {
     <div class="toast-message">${message}</div>
     <div class="toast-progress"></div>
   `;
-  
+
   // Add close functionality
-  const closeBtn = toast.querySelector('.toast-close');
-  closeBtn.addEventListener('click', () => {
+  const closeBtn = toast.querySelector(".toast-close");
+  closeBtn.addEventListener("click", () => {
     removeToast(toast);
   });
-  
+
   toastContainer.appendChild(toast);
-  
+
   // Trigger animation
   setTimeout(() => {
-    toast.classList.add('show');
+    toast.classList.add("show");
   }, 100);
-  
+
   // Auto remove after 5 seconds
   setTimeout(() => {
     removeToast(toast);
   }, 5000);
-  
+
   return toast;
 }
 
 function removeToast(toast) {
-  toast.classList.remove('show');
+  toast.classList.remove("show");
   setTimeout(() => {
     if (toast.parentNode) {
       toast.parentNode.removeChild(toast);
@@ -148,15 +148,21 @@ function removeToast(toast) {
 
 function showSuccessToast(data) {
   const message = `Your message has been sent successfully!\n\nName: ${data.name}\nEmail: ${data.email}\nSubject: ${data.subject}`;
-  createToast('success', 'Message Sent', message);
+  createToast("success", "Message Sent", message);
 }
 
-function showErrorToast(message = 'There was an error submitting your form. Please try again.') {
-  createToast('error', 'Submission Failed', message);
+function showErrorToast(
+  message = "There was an error submitting your form. Please try again."
+) {
+  createToast("error", "Submission Failed", message);
 }
 
 function showValidationToast() {
-  createToast('error', 'Validation Error', 'Please fix the errors in the form before submitting.');
+  createToast(
+    "error",
+    "Validation Error",
+    "Please fix the errors in the form before submitting."
+  );
 }
 
 // Contact Form Handler for Formspree with Validation
@@ -211,12 +217,12 @@ document.addEventListener("DOMContentLoaded", function () {
         if (response.ok) {
           // Success - show toast with form data
           const data = {
-            name: formData.get('name'),
-            email: formData.get('email'),
-            subject: formData.get('subject'),
-            message: formData.get('message')
+            name: formData.get("name"),
+            email: formData.get("email"),
+            subject: formData.get("subject"),
+            message: formData.get("message"),
           };
-          
+
           showSuccessToast(data);
           form.reset();
 
@@ -226,9 +232,9 @@ document.addEventListener("DOMContentLoaded", function () {
           });
         } else {
           response.json().then((data) => {
-            const errorMsg = data.errors 
-              ? data.errors.map(error => error.message).join(', ')
-              : 'There was a problem submitting your form.';
+            const errorMsg = data.errors
+              ? data.errors.map((error) => error.message).join(", ")
+              : "There was a problem submitting your form.";
             showErrorToast(errorMsg);
             console.error("Form submission error:", data);
           });

@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
   <html lang="en">
   <head>
       <meta charset="UTF-8">
@@ -9,8 +9,12 @@
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <!-- Syne (Editorial headings) & Inter (Body) -->
       <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+      <script src="script.js" defer></script>
   </head>
   <body>
+      
+      <!-- Toast Container -->
+      <div id="toast-container" class="toast-container"></div>
       
       <!-- CSS-Only Mobile Nav Toggle -->
       <input type="checkbox" id="nav-toggle" class="nav-toggle-input">
@@ -194,6 +198,35 @@
                               <div class="line"><span>Let's Talk</span></div>
                           </h2>
                           <a href="mailto:chriscric17@gmail.com" class="magnetic-btn email-big">chriscric17@gmail.com</a>
+                          
+                          <!-- Contact Form -->
+                          <div class="contact-form-wrapper">
+                              <form class="contact-form" id="contactForm" action="https://formspree.io/f/xbdadnqe" method="POST" novalidate>
+                                  <div class="form-row">
+                                      <div class="form-group">
+                                          <input type="text" id="name" name="name" placeholder=" " required minlength="2" maxlength="50" pattern="[a-zA-Z\s]+" title="Name should only contain letters and spaces">
+                                          <label for="name">Name</label>
+                                          <span class="error-message" id="name-error"></span>
+                                      </div>
+                                      <div class="form-group">
+                                          <input type="email" id="email" name="email" placeholder=" " required>
+                                          <label for="email">Email</label>
+                                          <span class="error-message" id="email-error"></span>
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <input type="text" id="subject" name="subject" placeholder=" " required minlength="5" maxlength="100">
+                                      <label for="subject">Subject</label>
+                                      <span class="error-message" id="subject-error"></span>
+                                  </div>
+                                  <div class="form-group">
+                                      <textarea id="message" name="message" placeholder=" " rows="5" required minlength="10" maxlength="1000"></textarea>
+                                      <label for="message">Message</label>
+                                      <span class="error-message" id="message-error"></span>
+                                  </div>
+                                  <button type="submit" class="form-submit-btn">Submit</button>
+                              </form>
+                          </div>
                       </div>
                       <div class="footer-sidebar">
                           <div class="socials-list">
